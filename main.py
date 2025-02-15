@@ -22,6 +22,7 @@ def countdown(count):
 
 def start_test():
     start_button.destroy()
+    canvas.delete(title_text)
     user_input.pack()
     user_input.focus()
     countdown(TIME_LIMIT)
@@ -42,7 +43,7 @@ def check_result(list_1, list_2):
     wpm = corrected_cpm / 5
 
     result_text = f"Your result:\n\nCorrected CPM: {corrected_cpm}\nWPM: {wpm}"
-    canvas.itemconfig(word_text, text=result_text)
+    canvas.itemconfig(word_text, text=result_text, font=("Arial", 24, "bold"))
 
     # print(f"Corrected CPM: {corrected_cpm}")
     # print(f"WPM: {wpm}")
@@ -62,17 +63,18 @@ def next_word(event):
 window = Tk()
 window.title("Typing Speed Test")
 window.minsize(width=800, height=500)
-window.config(padx=20, pady=20, bg="#00ff7f")
+window.config(padx=20, pady=20, bg="#ADD8E6")
 
-canvas = Canvas(width=600, height=300, bg="#00ff7f", highlightthickness=0)
-countdown_text = canvas.create_text(550, 20, text=f"Time left: 00", font=("Arial", 12, "normal"))
-word_text = canvas.create_text(300, 150, text=f"Typing Speed Test\nPress Start", justify="center", font=("Arial", 28, "bold"))
+canvas = Canvas(width=600, height=250, bg="#ADD8E6", highlightthickness=0)
+countdown_text = canvas.create_text(550, 20, text=f"Time left: 00", font=("Bahnschrift", 12, "normal"), fill="#202A44")
+title_text = canvas.create_text(300, 150, text="Typing Speed Test", fill="#202A44", justify="center", font=("Bahnschrift Light", 48, "bold"))
+word_text = canvas.create_text(300, 175, text=f"", fill="#202A44", justify="center", font=("Bahnschrift", 28, "normal"))
 canvas.pack()
 
 user_input = Entry(font=("Arial", 12), fg="black", bg="white")
 user_input.bind("<space>", next_word)
 
-start_button = Button(padx=3, pady=3, text="Start", font=("Arial", 12), command=start_test)
+start_button = Button(padx=3, pady=3, text="Start", font=("Bahnschrift", 12), command=start_test)
 start_button.pack()
 
 window.mainloop()
